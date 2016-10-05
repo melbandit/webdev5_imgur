@@ -15,5 +15,14 @@
   "bugs": {
     "url": "https://github.com/melbandit/webdev5_imgur/issues"
   },
-  "homepage": "https://github.com/melbandit/webdev5_imgur#readme"
+  "homepage": "https://github.com/melbandit/webdev5_imgur#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "susy": "^2.2.12"
+  },
+  "dependencies": {
+    "breakpoint": "^0.1.6",
+    "breakpoint-sass": "^2.7.0",
+    "susy": "^2.2.12"
+  }
 }
