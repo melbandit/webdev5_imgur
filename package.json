@@ -1,0 +1,19 @@
+{
+  "name": "webdev5",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.php",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/melbandit/webdev5_imgur.git"
+  },
+  "author": "Melissa Sattler <melissa.i.sattler@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/melbandit/webdev5_imgur/issues"
+  },
+  "homepage": "https://github.com/melbandit/webdev5_imgur#readme"
+}
