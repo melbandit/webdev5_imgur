@@ -1,0 +1,43 @@
+header{
+  float: left;
+  width: 100%;
+  position: fixed;
+  top:0;
+  left:0;
+  background-color: black;
+  color: whitesmoke;
+  z-index: 15;
+  .menu-md{
+    float: left;
+    width: 150px;
+    //display: block;
+  }
+}
+.header__logo{
+  float: left;
+}
+.upload{
+  float: left;
+  background-color: black;
+  color: whitesmoke;
+  border-radius: 25px;
+  font-size: 1.2em;
+  &:hover{
+    background-color: lightseagreen;
+  }
+}
+
+
+.nav-item-login,
+.nav-item-logout{
+  float: left;
+  color: white;
+}
+.btn--register{
+  float: left;
+  background-color: black;
+  border-radius: 20px;
+  &:hover{
+    background-color: #5e5e5e;
+  }
+}

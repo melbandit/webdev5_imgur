@@ -1,0 +1,120 @@
+@font-face {
+  font-family: 'Graphik';
+  src: url(../fonts/Graphik/Graphik-Thin.otf) format('opentype'); /* IE no comprende format()! */
+  font-weight: 100;
+}
+@font-face {
+  font-family: 'Graphik';
+  src: url(../fonts/Graphik/Graphik-Extralight.otf) format('opentype'); /* IE no comprende format()! */
+  font-weight: 200;
+}
+@font-face {
+  font-family: 'Graphik';
+  src: url(../fonts/Graphik/Graphik-Light.otf) format('opentype'); /* IE no comprende format()! */
+  font-weight: 300;
+}
+@font-face {
+  font-family: 'Graphik';
+  src: url(../fonts/Graphik/Graphik-Regular.otf) format('opentype'); /* IE no comprende format()! */
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Graphik';
+  src: url(../fonts/Graphik/Graphik-Medium.otf) format('opentype'); /* IE no comprende format()! */
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'Graphik';
+  src: url(../fonts/Graphik/Graphik-Semibold.otf) format('opentype'); /* IE no comprende format()! */
+  font-weight: 600;
+}
+@font-face {
+  font-family: 'Graphik';
+  src: url(../fonts/Graphik/Graphik-Bold.otf) format('opentype'); /* IE no comprende format()! */
+  font-weight: 700;
+}
+@font-face {
+  font-family: 'Graphik';
+  src: url(../fonts/Graphik/Graphik-Black.otf) format('opentype'); /* IE no comprende format()! */
+  font-weight: 800;
+}
+@font-face {
+  font-family: 'Graphik';
+  src: url(../fonts/Graphik/Graphik-Super.otf) format('opentype'); /* IE no comprende format()! */
+  font-weight: 900;
+}
+
+body,
+html{
+  font-family: 'Graphik', Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 1.2em;
+  color: #FFF;
+}
+ul{
+  list-style: none;
+  text-decoration: none;
+}
+.btn-default {
+  font-size: 1.2em;
+  font-weight: 300;
+  font-family: 'Graphik', Helvetica, Arial, sans-serif;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.navigation{
+  font-size: 1.2em;
+  font-weight: 900;
+  .nav-item{
+    color: #f5f5f5;
+    //text-transform: uppercase;
+    text-decoration: none;
+  }
+}
+
+h1{
+  font-family: 'Graphik';
+  font-size: 35px;; //80px/16 5em
+  font-weight: 800;
+  text-shadow: 1px 2px 0 rgba(153,153,153,0.5);
+  padding: 0;
+  margin: 0;
+  //color: #FFF;
+}
+h2{
+  font-family: 'Graphik';
+  font-weight: 600;
+  font-size: 30px; //40px/16 2.5em
+  //color: white;
+  margin-bottom:10px;
+  span{
+    font-weight: 900;
+  }
+}
+h3{
+  font-family: 'Graphik';
+  font-weight: 500;
+  font-size: 25px; //30px/16 1.875em
+  //color: white;
+}
+p{
+  font-family: 'Graphik';
+  font-weight: 300;
+  font-size: 15px;
+}
+a{
+  text-decoration: none;
+  color: #f5f5f5;
+}
+textarea{
+  color: #4c4c4c;
+  opacity: 0.5;
+}
+input{
+  color: #4c4c4c;
+  font-weight: 200;
+  padding: 5px;
+}
+.cross{
+  color: black;
+}

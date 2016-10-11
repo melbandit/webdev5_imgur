@@ -1,0 +1,36 @@
+*{
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+.clearfix:after{
+  content: "";
+  display: table;
+  clear: both;
+}
+// BREAKPOINTS===============================
+
+$breakpoint-sm: 768px;
+$breakpoint-md: 1024px;
+$breakpoint-lg: 1440px;
+
+
+// BREAKPOINT MIXINS=========================
+
+
+@mixin bp-sm  {
+  @media only screen and(min-width: $breakpoint-sm){
+    @content;
+  }
+}
+
+@mixin bp-md  {
+  @media only screen and(min-width: $breakpoint-md){
+    @content;
+  }
+}
+
+@mixin bp-lg  {
+  @media only screen and(min-width: $breakpoint-lg){
+    @content;
+  }
+}

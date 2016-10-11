@@ -5,14 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Homepage</title>
+    <title>Image</title>
 
     <link href="assets/css/main.css" rel="stylesheet">
-
 </head>
 
 <body class="page">
-
 <header class="header">
     <div class="header__logo">
         <a href="index.php">
@@ -86,130 +84,143 @@
 
 </header><!--End of Navigation and Header-->
 
-<h2>Found these images with <span>search result</span></h2>
+<h2>Your uploads</h2>
 
 <div class="content">
     <div class="photo-gallery">
         <a class="photo-gallery__link" href='details.php'>
             <div class="thumbnail">
                 <div class="highlight">
+                    <button class="cross">&#735; Delete</button>
                     <p class="thumbnail--title">title</p>
                     <p class="thumbnail--description">description</p>
-                    <p class="thumbnail--username">username</p>
                     <p class="thumbnail--date-time">date/time</p>
+                    <a href="upload.php">Edit</a>
                 </div>
             </div>
         </a>
         <a class="photo-gallery__link" href='details.php'>
             <div class="thumbnail">
                 <div class="highlight">
+                    <button class="cross">&#735; Delete</button>
                     <p class="thumbnail--title">title</p>
                     <p class="thumbnail--description">description</p>
-                    <p class="thumbnail--username">username</p>
                     <p class="thumbnail--date-time">date/time</p>
+                    <a href="upload.php">Edit</a>
                 </div>
             </div>
         </a>
         <a class="photo-gallery__link" href='details.php'>
             <div class="thumbnail">
                 <div class="highlight">
+                    <button class="cross">&#735; Delete</button>
                     <p class="thumbnail--title">title</p>
                     <p class="thumbnail--description">description</p>
-                    <p class="thumbnail--username">username</p>
                     <p class="thumbnail--date-time">date/time</p>
+                    <a href="upload.php">Edit</a>
                 </div>
             </div>
         </a>
         <a class="photo-gallery__link" href='details.php'>
             <div class="thumbnail">
                 <div class="highlight">
+                    <button class="cross">&#735; Delete</button>
                     <p class="thumbnail--title">title</p>
                     <p class="thumbnail--description">description</p>
-                    <p class="thumbnail--username">username</p>
                     <p class="thumbnail--date-time">date/time</p>
+                    <a href="upload.php">Edit</a>
                 </div>
             </div>
         </a>
         <a class="photo-gallery__link" href='details.php'>
             <div class="thumbnail">
                 <div class="highlight">
+                    <button class="cross">&#735; Delete</button>
                     <p class="thumbnail--title">title</p>
                     <p class="thumbnail--description">description</p>
-                    <p class="thumbnail--username">username</p>
                     <p class="thumbnail--date-time">date/time</p>
+                    <a href="upload.php">Edit</a>
                 </div>
             </div>
         </a>
         <a class="photo-gallery__link" href='details.php'>
             <div class="thumbnail">
                 <div class="highlight">
+                    <button class="cross">&#735; Delete</button>
                     <p class="thumbnail--title">title</p>
                     <p class="thumbnail--description">description</p>
-                    <p class="thumbnail--username">username</p>
                     <p class="thumbnail--date-time">date/time</p>
+                    <a href="upload.php">Edit</a>
                 </div>
             </div>
         </a>
         <a class="photo-gallery__link" href='details.php'>
             <div class="thumbnail">
                 <div class="highlight">
+                    <button class="cross">&#735; Delete</button>
                     <p class="thumbnail--title">title</p>
                     <p class="thumbnail--description">description</p>
-                    <p class="thumbnail--username">username</p>
                     <p class="thumbnail--date-time">date/time</p>
+                    <a href="upload.php">Edit</a>
                 </div>
             </div>
         </a>
         <a class="photo-gallery__link" href='details.php'>
             <div class="thumbnail">
                 <div class="highlight">
+                    <button class="cross">&#735; Delete</button>
                     <p class="thumbnail--title">title</p>
                     <p class="thumbnail--description">description</p>
-                    <p class="thumbnail--username">username</p>
                     <p class="thumbnail--date-time">date/time</p>
+                    <a href="upload.php">Edit</a>
                 </div>
             </div>
         </a>
         <a class="photo-gallery__link" href='details.php'>
             <div class="thumbnail">
                 <div class="highlight">
+                    <button class="cross">&#735; Delete</button>
                     <p class="thumbnail--title">title</p>
                     <p class="thumbnail--description">description</p>
-                    <p class="thumbnail--username">username</p>
                     <p class="thumbnail--date-time">date/time</p>
+                    <a href="upload.php">Edit</a>
                 </div>
             </div>
         </a>
         <a class="photo-gallery__link" href='details.php'>
             <div class="thumbnail">
                 <div class="highlight">
+                    <button class="cross">&#735; Delete</button>
                     <p class="thumbnail--title">title</p>
                     <p class="thumbnail--description">description</p>
-                    <p class="thumbnail--username">username</p>
                     <p class="thumbnail--date-time">date/time</p>
+                    <a href="upload.php">Edit</a>
                 </div>
             </div>
         </a>
         <a class="photo-gallery__link" href='details.php'>
             <div class="thumbnail">
                 <div class="highlight">
+                    <button class="cross">&#735; Delete</button>
                     <p class="thumbnail--title">title</p>
                     <p class="thumbnail--description">description</p>
-                    <p class="thumbnail--username">username</p>
                     <p class="thumbnail--date-time">date/time</p>
+                    <a href="upload.php">Edit</a>
                 </div>
             </div>
         </a>
         <a class="photo-gallery__link" href='details.php'>
             <div class="thumbnail">
                 <div class="highlight">
+                    <button class="cross">&#735; Delete</button>
                     <p class="thumbnail--title">title</p>
                     <p class="thumbnail--description">description</p>
-                    <p class="thumbnail--username">username</p>
                     <p class="thumbnail--date-time">date/time</p>
+                    <a href="upload.php">Edit</a>
                 </div>
             </div>
         </a>
+
     </div><!-- end of .photo-gallery -->
 
     <nav aria-label="Page navigation">
@@ -231,15 +242,9 @@
             </li>
         </ul>
     </nav>
-</div>
+</div><!-- end of .content -->
 
 
 <footer class="footer">&copy; Copyright text with dynamic date</footer>
-
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js"></script>
-<script src="assets/js/script.js" type="text/javascript"></script>
-</body> <!-- END of .page and body -->
+</body>
 </html>
