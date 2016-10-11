@@ -84,9 +84,11 @@
 
 </header><!--End of Navigation and Header-->
 
-<h2>Your uploads</h2>
+
 
 <div class="content">
+
+    <h2>Your uploads</h2>
     <div class="photo-gallery">
         <a class="photo-gallery__link" href='details.php'>
             <div class="thumbnail">
