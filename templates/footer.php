@@ -1,4 +1,4 @@
-<footer class="footer">&copy; Copyright text with dynamic date</footer>
+<footer class="footer">Copyright &copy; <?php echo date('Y'); ?></footer>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
