@@ -31,13 +31,17 @@ function getComment( $id ){
 
 function getComments(){
     return array(
-        (object) array( 'timestamp' => 1467112140, 'author' => 'Why?ME!', 'comment' => 'Oh how I miss you so!'),
-        (object) array( 'timestamp' => 1456110600, 'author' => 'DancingQueen', 'comment' => 'Why is he such a dumb dumb?'),
-        (object) array( 'timestamp' => 1454302500, 'author' => 'HatBack', 'comment' => "Can't help but laugh!"),
-        (object) array( 'timestamp' => 1446193200, 'author' => 'CharlieBites', 'comment' => 'Gotta Catch em ALL??'),
-        (object) array( 'timestamp' => 1428820020, 'author' => 'MelBandit', 'comment' => 'HAHAHA! Oh dear!')
+        (object) array( 'timestamp' => 1467112140, 'author' => 'Why?ME!', 'text' => 'Oh how I miss you so!'),
+        (object) array( 'timestamp' => 1456110600, 'author' => 'DancingQueen', 'text' => 'Why is he such a dumb dumb?'),
+        (object) array( 'timestamp' => 1454302500, 'author' => 'HatBack', 'text' => "Can't help but laugh!"),
+        (object) array( 'timestamp' => 1446193200, 'author' => 'CharlieBites', 'text' => 'Gotta Catch em ALL??'),
+        (object) array( 'timestamp' => 1428820020, 'author' => 'MelBandit', 'text' => 'HAHAHA! Oh dear!')
     );
 
 }
+
+//function displayDate($timestamp){
+//
+//}
 
 ?>
