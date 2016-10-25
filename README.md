@@ -22,7 +22,7 @@ MySQL Database Tables:
 
 Within the prerequisites folder, please take a look at database_design.png for my database layout.
 prerequisites/database_design.png
-![alt text](http://prerequisites/database_design.png "Description goes here")
+![alt text](prerequisites/database_design.png)
 
 
 Built with:
