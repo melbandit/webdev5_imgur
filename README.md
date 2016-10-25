@@ -1,4 +1,5 @@
-ProjectTitle: WebDev5
+ProjectTitle: WebDev5_imgur
+
 This project is...
 
 Getting Started:
