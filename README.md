@@ -1,4 +1,4 @@
-ProjectTitle: WebDev5_imgur
+<h2>ProjectTitle: WebDev5_imgur</h2>
 
 This project is...
 
@@ -6,7 +6,7 @@ This project is...
 
 These instructions will get your copy of the project up and running on your local machine for development and testing purposes.
 
-Prerequisites:
+<h2>Prerequisites:</h2>
 
 You will need to import these MySQL files into your server database before running the repository.
 Run/Import them in order. File Locations: within prerequisites folder
@@ -18,31 +18,26 @@ Run/Import them in order. File Locations: within prerequisites folder
     - run/import second to add users, images, and comments data to your database
     (import.sql contains an export of the all the users, images, and comments database after the database tables were created)
 
-MySQL Database Tables: 
+<h2>MySQL Database Tables: </h2>
 
 Within the prerequisites folder, please take a look at database_design.png for my database layout.
 prerequisites/database_design.png
 ![alt text](prerequisites/database_design.png)
 
 
-Built with:
+<h2>Built with:</h2>
 
 PHPStorm - web framework used, platform
 MAMP - localhost to test website
 MyPhpAdmin - database
 dbdesigner.net - where I designed and exported my database tables
 
-Versioning:
+<h2>Versioning:</h2>
 
 v1.0
 v1.1
 v1.2
 
-Author:
+<h2>Author:</h2>
 
 Melissa Sattler <melissa.i.sattler@gmail.com>
-
-Acknowledgments
-
-imgur.com , thanks for the inspiration.
-Micah Wood, thanks for teaching me what I know about PHP.
