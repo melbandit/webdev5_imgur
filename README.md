@@ -1,6 +1,6 @@
 <h2>Project Title: WebDev5_imgur</h2>
 
-This project is a website where users can upload and edit images with descriptions. Users can also comment on any uploaded image.
+This project is a website where users can upload and edit images with thier own descriptions. Users can also comment on any uploaded image.
 
 <h2>Getting Started:</h2>
 
