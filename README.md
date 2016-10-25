@@ -27,7 +27,7 @@ prerequisites/database_design.png
 
 Built with:
 
-PHPStorm - web framework used, platform
+PHPStorm - web framework used, platform <br>
 MAMP - localhost to test website
 MyPhpAdmin - database
 dbdesigner.net - where I designed and exported my database tables
