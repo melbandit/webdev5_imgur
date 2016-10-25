@@ -27,16 +27,16 @@ prerequisites/database_design.png
 
 <h2>Built with:</h2>
 
-PHPStorm - web framework used, platform
-MAMP - localhost to test website
-MyPhpAdmin - database
-dbdesigner.net - where I designed and exported my database tables
+- PHPStorm - web framework used, platform
+- MAMP - localhost to test website
+- MyPhpAdmin - database
+- dbdesigner.net - where I designed and exported my database tables
 
 <h2>Versioning:</h2>
 
-v1.0
-v1.1
-v1.2
+- v1.0
+- v1.1
+- v1.2
 
 <h2>Author:</h2>
 
