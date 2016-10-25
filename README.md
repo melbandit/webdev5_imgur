@@ -2,7 +2,7 @@ ProjectTitle: WebDev5_imgur
 
 This project is...
 
-Getting Started:
+<h2>Getting Started:</h2>
 
 These instructions will get your copy of the project up and running on your local machine for development and testing purposes.
 
