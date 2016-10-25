@@ -8,9 +8,7 @@ These instructions will get your copy of the project up and running on your loca
 Prerequisites:
 
 You will need to import these MySQL files into your server database before running the repository.
-Run/Import them in order.
-
-File Locations: within prerequisites folder
+Run/Import them in order. File Locations: within prerequisites folder
 
 1. prerequisites/create-tables.sql 
     - run/import create-tables.sql to generate the database tables
