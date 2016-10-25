@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 20, 2016 at 02:22 AM
+-- Generation Time: Oct 26, 2016 at 12:34 AM
 -- Server version: 5.6.28
 -- PHP Version: 7.0.10
 
@@ -27,6 +27,17 @@ CREATE TABLE `comments` (
   `text` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `image_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`id`, `timestamp`, `author`, `text`, `image_id`) VALUES
+(1, '2016-10-18 11:00:00', 1, 'Oh how I miss you so!', 3),
+(2, '2016-10-18 09:00:00', 2, 'Why is he such a dumb dumb?', 1),
+(3, '2016-10-17 12:10:00', 3, 'Can\'t help but laugh!', 2),
+(4, '2016-10-12 12:00:00', 2, 'Gotta Catch em ALL??', 3),
+(5, '2016-10-03 13:12:00', 1, 'HAHAHA! Oh dear!', 2);
 
 -- --------------------------------------------------------
 
@@ -120,7 +131,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `images`
 --
