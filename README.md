@@ -36,7 +36,7 @@ prerequisites/database_design.png
 
 - v1.0
 - v1.1
-- v1.2
+- v1.2 - most recent update
 
 <h2>Author:</h2>
 
