@@ -11,6 +11,7 @@ You will need to import these MySQL files into your server database before runni
 Run/Import them in order.
 
 File Locations: within prerequisites folder
+
 1. prerequisites/create-tables.sql 
     - run/import create-tables.sql to generate the database tables
     (create-tables.sql creates the database tables for inserting your data for users, images, and comments)
@@ -27,7 +28,7 @@ prerequisites/database_design.png
 
 Built with:
 
-PHPStorm - web framework used, platform <br>
+PHPStorm - web framework used, platform
 MAMP - localhost to test website
 MyPhpAdmin - database
 dbdesigner.net - where I designed and exported my database tables
