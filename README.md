@@ -1,6 +1,6 @@
-<h2>ProjectTitle: WebDev5_imgur</h2>
+<h2>Project Title: WebDev5_imgur</h2>
 
-This project is...
+This project is a website where users can upload and edit images with descriptions. Users can also comment on any uploaded image.
 
 <h2>Getting Started:</h2>
 
@@ -9,7 +9,7 @@ These instructions will get your copy of the project up and running on your loca
 <h2>Prerequisites:</h2>
 
 You will need to import these MySQL files into your server database before running the repository.
-Run/Import them in order. File Locations: within prerequisites folder
+Run/Import them in order. File Locations: within prerequisites folder.
 
 1. prerequisites/create-tables.sql 
     - run/import create-tables.sql to generate the database tables
