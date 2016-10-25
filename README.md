@@ -1,4 +1,4 @@
-<h2>Project Title: WebDev5_imgur</h2>
+<h2>WebDev5_imgur</h2>
 
 This project is a website where users can upload and edit images with thier own descriptions. Users can also comment on any uploaded image.
 
