@@ -53,7 +53,7 @@ function deleteImage($id){
 
 function getComment( $id ){
     global $db;
-    $query = $db->prepare( 'SELECT * FROM comments WHERE id = :id' );
+    $query = $db->prepare( 'SELECT * FROM comment WHERE id = :id' );
     $query->bindValue( ':id', $id, PDO::PARAM_INT );
     $query->execute();
     return $query->fetchObject();
@@ -62,7 +62,7 @@ function getComment( $id ){
 //fix
 function getComments($image_id){
     global $db;
-    $query = $db->prepare( 'SELECT * FROM comments WHERE id = :id' );
+    $query = $db->prepare( 'SELECT * FROM comments WHERE image_id = :id' );
     $query->bindValue( ':id', $image_id, PDO::PARAM_INT );
     $query->execute();
     $query->setFetchMode( PDO::FETCH_OBJ );
@@ -81,10 +81,20 @@ function deleteComment($id){
 
 
 function getUsers(){
-
+    global $db;
+    $query = $db->prepare( 'SELECT * FROM users WHERE id = :id' );
+    $query->bindValue( ':id', $id, PDO::PARAM_INT );
+    $query->execute();
+    $query->setFetchMode( PDO::FETCH_OBJ );
+    return $query->fetchAll();
 }
 function getUser($id){
-
+//getUser($image->user_id)->author;
+    global $db;
+    $query = $db->prepare( 'SELECT * FROM users WHERE id = :id' );
+    $query->bindValue( ':id', $id, PDO::PARAM_INT );
+    $query->execute();
+    return $query->fetchObject();
 }
 function insertUser($id, $user){
     //INSERT
@@ -100,9 +110,11 @@ function deleteUser($id){
 //
 //}
 
-//var_dump(getImage(2));
+//var_dump(getUser(2)->user_login);
+//
 //die();
-
+//var_dump(getComment(2));
+//die();
 
 
 
