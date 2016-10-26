@@ -1,4 +1,4 @@
-<a class="photo-gallery__link" href="details.php?image=<?php echo $index; ?>">
+<a class="photo-gallery__link" href="details.php?image=<?php echo $image->id; ?>">
     <img class="thumbnail" src="<?php echo $image->url; ?>" alt="<?php echo $image->alt ?>"/>
 
     <div class="highlight">

@@ -1,47 +1,109 @@
 <?php
 
+include __DIR__ . '/config.php';
+
 date_default_timezone_set( 'America/New_York' );
 
+$db = new PDO( 'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME , DB_USER, DB_PASSWORD);
+
+/**
+ * @param $id
+ * @return mixed
+ */
+
 function getImage( $id ){
-    return getImages()[ $id ];
+    global $db;
+    $query = $db->prepare( 'SELECT * FROM images WHERE id = :id' );
+    $query->bindValue( ':id', $id, PDO::PARAM_INT );
+    $query->execute();
+//    $query->setFetchMode( PDO::FETCH_OBJ );
+//    $results = $query->fetchAll();
+    return $query->fetchObject();
 }
 
-function getImages(){
-    return array(
-        (object) array( 'url' => 'http://i.imgur.com/izzpeRbb.jpg', 'alt' => '', 'title' => 'PatrickStarU', 'description' => 'Patrick looks like Staru!!', 'author' => 'MelBandit', 'timestamp' => 1420288620),
-        (object) array( 'url' => 'http://i.imgur.com/5UvoYdIb.jpg', 'alt' => '', 'title' => 'Bender as a Human', 'description' => 'Obama just lifted the ban on Cuban rum and cigars!', 'author' => 'HappyCamper', 'timestamp' => 1420965240),
-        (object) array( 'url' => 'http://i.imgur.com/3qi0ivzb.jpg', 'alt' => '', 'title' => 'Angry Mob', 'description' => 'Angry mobs makes angry slobs', 'author' => 'CharlieBites', 'timestamp' => 1424781900),
-        (object) array( 'url' => 'http://i.imgur.com/RzBgfhob.jpg', 'alt' => '', 'title' => 'Girls or Boys?', 'description' => 'Gender party!!', 'author' => 'BoyGirlParty', 'timestamp' => 1425819360),
-        (object) array( 'url' => 'http://i.imgur.com/iTMFYwRb.jpg', 'alt' => '', 'title' => 'No Wind Burn Here', 'description' => 'Two guys, tight suits, power walking with safe.', 'author' => 'SkaterBoy', 'timestamp' => 1427526540),
-        (object) array( 'url' => 'http://i.imgur.com/mIcObyLb.jpg', 'alt' => '', 'title' => 'Mustachio Cat', 'description' => 'Evil cat, lovely mustache!', 'author' => 'CatLover', 'timestamp' => 1431231840),
-        (object) array( 'url' => 'http://i.imgur.com/XUgDxKxb.jpg', 'alt' => '', 'title' => 'Can I play?', 'description' => 'Shy little guy hiding', 'author' => 'AnimalLover24', 'timestamp' => 1436704440),
-        (object) array( 'url' => 'http://i.imgur.com/8hfW8JSb.jpg', 'alt' => '', 'title' => 'No More Girlfriend!', 'description' => 'All alone, and ready to mingle!', 'author' => 'AllDaSingleLadies', 'timestamp' => 1445483400),
-        (object) array( 'url' => 'http://i.imgur.com/nVlJf9Ob.jpg', 'alt' => '', 'title' => 'Wubalubadubdub!', 'description' => "Looks like we're somewhere new", 'author' => 'newbie', 'timestamp' => 1448931720),
-        (object) array( 'url' => 'http://i.imgur.com/6CZGit4b.jpg', 'alt' => '', 'title' => 'Saturday Night Live Devil', 'description' => 'My plans are working out this year for the Elections! I have two souls in the running! MWAHAHA!', 'author' => 'AmericasGreat', 'timestamp' => 1452396780),
-        (object) array( 'url' => 'http://i.imgur.com/jm0fP9Ub.jpg', 'alt' => '', 'title' => 'Playstation!', 'description' => "Oh the days of Crash Bandicoot, I miss the classics!", 'author' => 'PSFan', 'timestamp' => 1460432700),
-        (object) array( 'url' => 'http://i.imgur.com/tnxhjzEb.jpg', 'alt' => '', 'title' => 'PUGLY', 'description' => 'You want to know how pugs got their face... chasing parked cars!', 'author' => 'PugHater', 'timestamp' => 1456797720)
+/**
+ * @param int $count
+ * @param int $offset
+ *
+ * @return array
+ */
 
-    );
+function getImages($count=12, $offset=0){
+    global $db;
+    $query = $db->prepare( 'SELECT * FROM images LIMIT :offset, :count' );
+    $query->bindValue( ':count', $count, PDO::PARAM_INT );
+    $query->bindValue( ':offset', $offset, PDO::PARAM_INT );
+    $query->execute();
+    $query->setFetchMode( PDO::FETCH_OBJ );
+    return $query->fetchAll();
+}
+
+function insertImage($image){
+    //INSERT
+}
+function updateImage($id, $image){
+    //SELECT?
+}
+function deleteImage($id){
+    global $db;
+    $query = $db->prepare( 'DELETE * FROM images WHERE id = :id' );
+    $query->bindValue( ':id', $id, PDO::PARAM_INT );
+    $query->execute();
 }
 
 function getComment( $id ){
-    return getComments()[ $id ];
+    global $db;
+    $query = $db->prepare( 'SELECT * FROM comments WHERE id = :id' );
+    $query->bindValue( ':id', $id, PDO::PARAM_INT );
+    $query->execute();
+    return $query->fetchObject();
+}
+
+//fix
+function getComments($image_id){
+    global $db;
+    $query = $db->prepare( 'SELECT * FROM comments WHERE id = :id' );
+    $query->bindValue( ':id', $image_id, PDO::PARAM_INT );
+    $query->execute();
+    $query->setFetchMode( PDO::FETCH_OBJ );
+    return $query->fetchAll();
+}
+
+function insertComment($id, $comment){
+    //INSERT comment into database
+}
+function updateComment($id, $comment){
+    //SELECT?
+}
+function deleteComment($id){
+    //DELETE
 }
 
 
-function getComments(){
-    return array(
-        (object) array( 'timestamp' => 1467112140, 'author' => 'Why?ME!', 'text' => 'Oh how I miss you so!'),
-        (object) array( 'timestamp' => 1456110600, 'author' => 'DancingQueen', 'text' => 'Why is he such a dumb dumb?'),
-        (object) array( 'timestamp' => 1454302500, 'author' => 'HatBack', 'text' => "Can't help but laugh!"),
-        (object) array( 'timestamp' => 1446193200, 'author' => 'CharlieBites', 'text' => 'Gotta Catch em ALL??'),
-        (object) array( 'timestamp' => 1428820020, 'author' => 'MelBandit', 'text' => 'HAHAHA! Oh dear!')
-    );
+function getUsers(){
 
+}
+function getUser($id){
+
+}
+function insertUser($id, $user){
+    //INSERT
+}
+function updateUser($id, $user){
+    //SELECT?
+}
+function deleteUser($id){
+    //DELETE
 }
 
 //function displayDate($timestamp){
 //
 //}
+
+//var_dump(getImage(2));
+//die();
+
+
+
 
 ?>
