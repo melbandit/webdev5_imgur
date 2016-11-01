@@ -6,4 +6,4 @@
     </span>
 </div><!-- /input-group -->
 
-<!-- <?php insertComment($_GET['text']); ?> -->
+<!-- //<?php insertComment($_GET['text']); ?> -->
