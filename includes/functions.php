@@ -108,7 +108,7 @@ function getComment( $id ){
 function getComments($image_id){
     global $db;
     $query = $db->prepare( 'SELECT * FROM comments WHERE image_id = :id' );
-    $query->bindValue( ':id', $image_id->image_id, PDO::PARAM_INT );
+    $query->bindValue( ':id', $image_id, PDO::PARAM_INT ); //add ->image_id?
     $query->execute();
     $query->setFetchMode( PDO::FETCH_OBJ );
     return $query->fetchAll();
