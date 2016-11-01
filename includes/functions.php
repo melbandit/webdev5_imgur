@@ -26,8 +26,8 @@ function getImage( $id ){
 /**
  * This function will fetch all images object from the db.
  *
- * @param int $count This is the amount of the images taken from the db to be displayed at a time.
- * @param int $offset
+ * @param int $count This is the number of the images taken from the db to be displayed at a time.
+ * @param int $offset This is the offset where the images will start being selected in db.
  *
  * @return array Will return an array of images from the database.
  */
@@ -59,6 +59,7 @@ function insertImage($image){
  * This is a function for updating an existing image object within the db.
  *
  * @param integer $id This is the ID of the image in the db.
+ *
  * @param $image This is the changes to the image that will be applied in the db.
  */
 function updateImage($id, $image){
