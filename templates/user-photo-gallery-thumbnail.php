@@ -5,7 +5,7 @@
         <button class="cross">&#735; Delete</button>
         <p class="thumbnail--title"><?php echo $image->title; ?></p>
         <p class="thumbnail--description">"<?php echo $image->description; ?>"</p>
-        <p class="thumbnail--date-time"><?php echo date( 'F d,Y \a\t h:ia', $image->timestamp); ?></p>
+        <p class="thumbnail--date-time"><?php include __DIR__ . '/../includes/format-date.php'; ?></p>
         <a href="upload.php">Edit</a>
     </div>
 </a>
