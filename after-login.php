@@ -1,12 +1,12 @@
+<?php include __DIR__ . '/includes/functions.php' ?>
+<?php $errors = processRegistrationForm();?>
+
 <div class="login_logout">
     <div class="btn-group">
-        <button type="button" class="btn btn--register dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Login <span class="caret"></span>
-        </button>
         <ul class="dropdown-menu">
             <form method="post">
-                Username: <input type="text" name="username"><br>
-<!--                type="email"-->
+                Username: <input type="text" name="username" <?php echo $errors ? 'style="color:red"' : '' ?><br>
+                <!--                type="email"-->
                 Password: <input type="text" name="pwd" maxlength="10"><br>
                 <button type="button" class="btn btn--register">
                     forgot?
@@ -15,7 +15,4 @@
             </form>
         </ul>
     </div>
-    <ul>
-        <li><a href="#" class="nav-item-logout">Logout</a></li>
-    </ul>
 </div>

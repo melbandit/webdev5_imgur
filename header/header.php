@@ -1,4 +1,3 @@
-<?php include __DIR__ . '/../includes/functions.php' ?>
 <!DOCTYPE html>
 <html>
 <head>

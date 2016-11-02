@@ -108,7 +108,7 @@ function getComment( $id ){
 function getComments($image_id){
     global $db;
     $query = $db->prepare( 'SELECT * FROM comments WHERE image_id = :id' );
-    $query->bindValue( ':id', $image_id, PDO::PARAM_INT ); //add ->image_id?
+    $query->bindValue( ':id', $image_id, PDO::PARAM_INT );
     $query->execute();
     $query->setFetchMode( PDO::FETCH_OBJ );
     return $query->fetchAll();
@@ -185,14 +185,14 @@ function getUser($id){
 /**
  * This function is for creating a new user into the db.
  *
- * @param $user This is the user object added to the db.
+ * @param object $user This is the user object added to the db.
  */
 function insertUser($user){
     global $db;
     $query = $db->prepare( 'INSERT INTO users (user_login, user_password, user_email) VALUE (:user_login, :user_password, :user_email)' );
     $query->bindValue( ':user_login', $user->user_login, PDO::PARAM_STR );
     $query->bindValue( ':user_password', $user->user_password, PDO::PARAM_STR );
-    $query->bindValue( ':user_email', $user->user_password, PDO::PARAM_STR );
+    $query->bindValue( ':user_email', $user->user_email, PDO::PARAM_STR );
     $query->execute();
 }
 
@@ -223,6 +223,25 @@ function deleteUser($id){
     $query->execute();
 }
 
+function userExists($username){
+    global $db;
+    $query = $db->prepare( 'SELECT user_login FROM users WHERE user_login = :user_login' );
+    $query->bindValue( ':user_login', $username, PDO::PARAM_INT );
+    $query->execute();
+
+    $user = $query->fetchObject();
+    return (bool) $user;
+}
+
+function emailExists($email){
+    global $db;
+    $query = $db->prepare( 'SELECT user_email FROM users WHERE user_email = :user_email' );
+    $query->bindValue( ':user_email', $email, PDO::PARAM_INT );
+    $query->execute();
+
+    $email = $query->fetchObject();
+    return (bool) $email;
+}
 // ================= END of USERS =================
 
 
@@ -230,6 +249,67 @@ function displayDate($timestamp){
     $imageDate = new DateTime();
     $imageDate->setTimestamp($timestamp);
     echo $imageDate->format('F d,Y \a\t h:ia');
+}
+
+function processRegistrationForm(){
+
+    $errors = array();
+
+    if( empty($_POST) ){
+        return "";
+    }
+
+    //check if username already exists
+    $username = filter_input(INPUT_POST, 'username');
+    if(empty($username)){
+        $errors['username'] = "no username!!";
+    }
+    if(strlen($username) < 5){
+        $errors['username'] = "username too short/weak";
+    }
+    if(userExists($username)){
+        $errors['username'] = "username exists!";
+    }
+
+    $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+// invalid email
+    if( empty($email) ){
+        $errors['email'] = "invalid email";
+    }
+//email already exists
+    if( emailExists($email) ){
+        $errors['email'] = "email exists!";
+    }
+
+    $password = filter_input(INPUT_POST, 'pwd');
+//password don't match
+    $passwordVerify = filter_input(INPUT_POST, 'pwd-verify');
+    if($password !== $passwordVerify){
+        $errors['pwd'] = "great, your passwords don't match";
+    }
+//password too weak
+    if(strlen($password) < 8){
+        $errors['pwd'] = "pwd too short/weak";
+    }
+//Create user
+    if(empty($errors)){
+        $user = (object)[ //or array(insert info here)
+            'user_login' => $username,
+            'user_password' => $password,
+            'user_email' => $email
+        ];
+
+
+        insertUser( $user );
+
+    //redirect user to login
+        header( 'Location: ' . APP_URL . '/after-login.php');
+        //'Location: http://localhost:3002/webdev5_imgur/index.php'
+    }
+    //var_dump($username, $email, $password, $passwordVerify);
+
+    return $errors;
+
 }
 
 // ===========var_dump===============

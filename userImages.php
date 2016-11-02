@@ -5,7 +5,7 @@ include __DIR__ . '/header/header.php';
 
 <div class="content">
 
-    <h2><?php echo getUser($_GET['id']->author)?>'s uploads</h2>
+    <!--<h2><?php echo getUserId()?> 's uploads</h2><!--getUser($_GET[\'id\']->author)?>-->-->
     <?php
     include __DIR__ . '/templates/user-photo-gallery.php';
     include __DIR__ . '/templates/pagination.php';

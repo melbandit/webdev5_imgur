@@ -1,3 +1,5 @@
+<?php include __DIR__ . '/includes/functions.php' ?>
+<?php $errors = processRegistrationForm();?>
 <?php include __DIR__ . '/header/header.php'; ?>
 
 <div class="content">
