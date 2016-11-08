@@ -223,7 +223,13 @@ function deleteUser($id){
     $query->execute();
 }
 
-function userExists($username){
+/**
+ * @param $username
+ *
+ * @return bool
+ */
+
+function userExists( $username ){
     global $db;
     $query = $db->prepare( 'SELECT user_login FROM users WHERE user_login = :user_login' );
     $query->bindValue( ':user_login', $username, PDO::PARAM_INT );
@@ -233,7 +239,12 @@ function userExists($username){
     return (bool) $user;
 }
 
-function emailExists($email){
+/**
+ * @param $email
+ *
+ * @return bool
+ */
+function emailExists( $email ){
     global $db;
     $query = $db->prepare( 'SELECT user_email FROM users WHERE user_email = :user_email' );
     $query->bindValue( ':user_email', $email, PDO::PARAM_INT );
@@ -245,7 +256,7 @@ function emailExists($email){
 // ================= END of USERS =================
 
 
-function displayDate($timestamp){
+function displayDate( $timestamp ){
     $imageDate = new DateTime();
     $imageDate->setTimestamp($timestamp);
     echo $imageDate->format('F d,Y \a\t h:ia');
