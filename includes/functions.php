@@ -182,6 +182,7 @@ function getUser($id){
     $query->execute();
     return $query->fetchObject();
 }
+
 /**
  * This function is for creating a new user into the db.
  *
@@ -239,6 +240,9 @@ function userExists( $username ){
     return (bool) $user;
 }
 
+
+// ================= END of USERS =================
+
 /**
  * @param $email
  *
@@ -253,8 +257,6 @@ function emailExists( $email ){
     $email = $query->fetchObject();
     return (bool) $email;
 }
-// ================= END of USERS =================
-
 
 function displayDate( $timestamp ){
     $imageDate = new DateTime();
@@ -302,7 +304,7 @@ function processRegistrationForm(){
     if(strlen($password) < 8){
         $errors['pwd'] = "pwd too short/weak";
     }
-//Create user
+//create user
     if(empty($errors)){
         $user = (object)[ //or array(insert info here)
             'user_login' => $username,
