@@ -64,9 +64,11 @@ function insertImage($image){
  */
 function updateImage($id, $image){
     global $db;
-    $query = $db->prepare( 'UPDATE images SET image = $image  WHERE id = $id' );
+    $query = $db->prepare( 'UPDATE images SET url = :url, title = :title, description = :description  WHERE id = :id' );
     $query->bindValue( ':id', $id, PDO::PARAM_INT );
-    $query->bindValue( ':image', $image, PDO::PARAM_STR );
+    $query->bindValue( ':url', $image->url, PDO::PARAM_STR );
+    $query->bindValue( ':title', $image->title, PDO::PARAM_STR );
+    $query->bindValue( ':description', $image->description, PDO::PARAM_STR );
     $query->execute();
 }
 /**
@@ -76,7 +78,7 @@ function updateImage($id, $image){
  */
 function deleteImage($id){
     global $db;
-    $query = $db->prepare( 'DELETE * FROM images WHERE id = :id' );
+    $query = $db->prepare( 'DELETE FROM images WHERE id = :id' );
     $query->bindValue( ':id', $id, PDO::PARAM_INT );
     $query->execute();
 }
@@ -93,7 +95,7 @@ function deleteImage($id){
  */
 function getComment( $id ){
     global $db;
-    $query = $db->prepare( 'SELECT * FROM comment WHERE id = :id' );
+    $query = $db->prepare( 'SELECT * FROM comments WHERE id = :id' );
     $query->bindValue( ':id', $id, PDO::PARAM_INT );
     $query->execute();
     return $query->fetchObject();
@@ -107,7 +109,7 @@ function getComment( $id ){
  */
 function getComments($image_id){
     global $db;
-    $query = $db->prepare( 'SELECT * FROM comments WHERE image_id = :id' );
+    $query = $db->prepare( 'SELECT * FROM comments WHERE id = :id' );
     $query->bindValue( ':id', $image_id, PDO::PARAM_INT );
     $query->execute();
     $query->setFetchMode( PDO::FETCH_OBJ );
@@ -135,9 +137,10 @@ function insertComment($comment){
  */
 function updateComment($id, $comment){
     global $db;
-    $query = $db->prepare( 'UPDATE comments SET comment = $comment  WHERE id = $id' );
+    $query = $db->prepare( 'UPDATE comments SET author = :author, text = :text WHERE id = :id' );
     $query->bindValue( ':id', $id, PDO::PARAM_INT );
-    $query->bindValue( ':comment', $comment->comment, PDO::PARAM_STR );
+    $query->bindValue( ':author', $comment->author, PDO::PARAM_INT );
+    $query->bindValue( ':text', $comment->text, PDO::PARAM_STR );
     $query->execute();
 }
 /**
@@ -206,9 +209,11 @@ function insertUser($user){
  */
 function updateUser($id, $user){
     global $db;
-    $query = $db->prepare( 'UPDATE users SET user = $user  WHERE id = $id' );
+    $query = $db->prepare( 'UPDATE users SET user_login = :user_login, user_password = :user_password, user_email = :user_email  WHERE id = :id' );
     $query->bindValue( ':id', $id, PDO::PARAM_INT );
-    $query->bindValue( ':user', $user, PDO::PARAM_STR );
+    $query->bindValue( ':user_login', $user->user_login, PDO::PARAM_STR );
+    $query->bindValue( ':user_password', $user->user_password, PDO::PARAM_STR );
+    $query->bindValue( ':user_email', $user->user_email, PDO::PARAM_STR );
     $query->execute();
 }
 
