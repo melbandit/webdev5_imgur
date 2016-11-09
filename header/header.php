@@ -1,3 +1,6 @@
+<?php
+include __DIR__ . '/../includes/bootstrap.php';
+?>
 <!DOCTYPE html>
 <html>
 <head>

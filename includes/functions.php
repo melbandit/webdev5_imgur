@@ -1,11 +1,5 @@
 <?php
 
-include __DIR__ . '/config.php';
-
-date_default_timezone_set( 'America/New_York' );
-
-$db = new PDO( 'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME , DB_USER, DB_PASSWORD);
-
 // ================= END of IMAGES =================
 /**
  * This function will fetch an image object from the db by id.
