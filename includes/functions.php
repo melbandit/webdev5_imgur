@@ -357,6 +357,21 @@ function logOut(){
     session_destroy();
 }
 
+
+function getCurrentUserId(){
+    $user_id = 0;
+
+    //fetch the logged in user's ID
+
+    if(isset($_SESSION, $_SESSION['id'])){
+        $user_id = $_SESSION['id'];
+    }
+
+    //return user's ID
+
+    return $user_id;
+}
+
 function processLoginForm(){
 
     $loginErrors = array();
@@ -383,32 +398,24 @@ function processLoginForm(){
     if(userExists($username) == true && pwdExists($password)== false ) {
         $loginErrors['pwd'] = "Incorrect password!";
     }
-
+//    if(! isset($user_password) || $password != $username->password){
+//        $loginErrors['pwd'] = "Incorrect password!";
+//
+//    }
+    //if(($username["user_login"] == $login["user_login"]) && ($user["pass"] == $login["pass"]))
     if(empty($errors)){
-//      $user = (object)[ //or array(insert info here)
-//          'user_login' => $username,
-//          'user_password' => $password
+        $user = (object)[ //or array(insert info here)
+            'user_login' => $username,
+            'user_password' => $password
         ];
-    }
 
-    logIn( $user );
+        logIn( $user );
+        header( 'Location: ' . APP_URL . '/userImages.php');
+    }
 
     return $loginErrors;
 }
 
-function getCurrentUserId(){
-    $user_id = 0;
-
-    //fetch the logged in user's ID
-
-    if(isset($_SESSION, $_SESSION['id'])){
-        $user_id = $_SESSION['id'];
-    }
-
-    //return user's ID
-
-    return $user_id;
-}
 
 ?>
 
