@@ -1,6 +1,6 @@
 <?php
 
-// ================= END of IMAGES =================
+// ================= IMAGES =================
 /**
  * This function will fetch an image object from the db by id.
  *
@@ -179,6 +179,14 @@ function getUser($id){
     $query->execute();
     return $query->fetchObject();
 }
+function getUserByUserLogin($user_login){
+//getUser($image->user_id)->author;
+    global $db;
+    $query = $db->prepare( 'SELECT * FROM users WHERE user_login = :user_login' );
+    $query->bindValue( ':user_login', $user_login, PDO::PARAM_STR );
+    $query->execute();
+    return $query->fetchObject();
+}
 
 /**
  * This function is for creating a new user into the db.
@@ -239,6 +247,16 @@ function userExists( $username ){
     return (bool) $user;
 }
 
+function pwdExists( $password ){
+    global $db;
+    $query = $db->prepare( 'SELECT user_password FROM users WHERE user_password = :user_password' );
+    $query->bindValue( ':user_password', $password, PDO::PARAM_INT );
+    $query->execute();
+
+    $pwd = $query->fetchObject();
+    return (bool) $pwd;
+}
+
 
 // ================= END of USERS =================
 
@@ -266,9 +284,13 @@ function displayDate( $timestamp ){
 function processRegistrationForm(){
 
     $errors = array();
-
-    if( empty($_POST) ){
-        return "";
+//
+//    if( empty($_POST) ){
+//        return $errors;
+//    }
+    // If the registration form wasn't submitted, cut out early
+    if ( ! isset( $_POST['registration-form'] ) ) {
+        return $errors;
     }
 
     //check if username already exists
@@ -283,27 +305,27 @@ function processRegistrationForm(){
         $errors['username'] = "username exists!";
     }
 
+    // invalid email
     $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
-// invalid email
     if( empty($email) ){
         $errors['email'] = "invalid email";
     }
-//email already exists
+    //email already exists
     if( emailExists($email) ){
         $errors['email'] = "email exists!";
     }
 
     $password = filter_input(INPUT_POST, 'pwd');
-//password don't match
     $passwordVerify = filter_input(INPUT_POST, 'pwd-verify');
+    //password don't match
     if($password !== $passwordVerify){
-        $errors['pwd'] = "great, your passwords don't match";
+        $errors['pwd'] = "your passwords don't match";
     }
-//password too weak
+    //password too weak
     if(strlen($password) < 8){
         $errors['pwd'] = "pwd too short/weak";
     }
-//create user
+    //create user
     if(empty($errors)){
         $user = (object)[ //or array(insert info here)
             'user_login' => $username,
@@ -324,15 +346,75 @@ function processRegistrationForm(){
 
 }
 
-// ===========var_dump===============
-//var_dump(getUser(2)->user_login);
-//die();
-//var_dump(getComments(2));
-//die();
-//var_dump(insertComment(2, "happy"));
-//die();
-//var_dump(insertImage(1, "www.google.com", "heya", "this is a desc"));
-//die();
+//=========== Log In/Out ===========
 
+function logIn($id){
+    $_SESSION['id'] = $id;
+}
+
+function logOut(){
+    session_unset();
+    session_destroy();
+}
+
+function processLoginForm(){
+
+    $loginErrors = array();
+
+    if ( ! isset( $_POST['login-form'] ) ) {
+        return $loginErrors;
+    }
+    //username field empty & //username doesn't exist
+    $username = filter_input(INPUT_POST, 'username');
+    if(empty($username)){
+        $loginErrors['username'] = "no username!!";
+    } else if( userExists($username) == false ){
+        $loginErrors['username'] = "username doesn't exist!";
+    }
+
+    //password field-empty
+    $password = filter_input(INPUT_POST, 'pwd');
+   // $password = isset($_POST['pwd']) ? $_POST['pwd'] : false;
+
+    if(empty($password)) {
+        $loginErrors['pwd'] = "Fill out your password!";
+    }
+    //password incorrect
+    if(userExists($username) == true && pwdExists($password)== false ) {
+        $loginErrors['pwd'] = "Incorrect password!";
+    }
+
+    if(empty($errors)){
+//      $user = (object)[ //or array(insert info here)
+//          'user_login' => $username,
+//          'user_password' => $password
+        ];
+    }
+
+    logIn( $user );
+
+    return $loginErrors;
+}
+
+function getCurrentUserId(){
+    $user_id = 0;
+
+    //fetch the logged in user's ID
+
+    if(isset($_SESSION, $_SESSION['id'])){
+        $user_id = $_SESSION['id'];
+    }
+
+    //return user's ID
+
+    return $user_id;
+}
 
 ?>
+
+<!--//getUserByUserLogin-->
+<!--//$user_id = 'SELECT * FROM users WHERE user_login = :user_login';-->
+<!--//return $user;-->
+<!---->
+<!--//    $user_login = $_SESSION['user_login'];-->
+<!--//    $user_password = $_SESSION['user_password'];-->
