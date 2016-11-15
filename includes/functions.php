@@ -403,7 +403,7 @@ function processLoginForm(){
 //
 //    }
     //if(($username["user_login"] == $login["user_login"]) && ($user["pass"] == $login["pass"]))
-    if(empty($errors)){
+    if(empty($loginErrors)){
         $user = (object)[ //or array(insert info here)
             'user_login' => $username,
             'user_password' => $password
