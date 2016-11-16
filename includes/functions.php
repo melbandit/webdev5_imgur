@@ -391,25 +391,16 @@ function processLoginForm(){
     $password = filter_input(INPUT_POST, 'pwd');
    // $password = isset($_POST['pwd']) ? $_POST['pwd'] : false;
 
+    $user = getUserByUserLogin($username);
     if(empty($password)) {
         $loginErrors['pwd'] = "Fill out your password!";
-    }
-    //password incorrect
-    if(userExists($username) == true && pwdExists($password)== false ) {
+    } else if(empty($user) || $user->user_password !== $password){
         $loginErrors['pwd'] = "Incorrect password!";
     }
-//    if(! isset($user_password) || $password != $username->password){
-//        $loginErrors['pwd'] = "Incorrect password!";
-//
-//    }
-    //if(($username["user_login"] == $login["user_login"]) && ($user["pass"] == $login["pass"]))
+    //password incorrect
     if(empty($loginErrors)){
-        $user = (object)[ //or array(insert info here)
-            'user_login' => $username,
-            'user_password' => $password
-        ];
 
-        logIn( $user );
+        logIn( $user->id );
         header( 'Location: ' . APP_URL . '/userImages.php');
     }
 
@@ -417,11 +408,7 @@ function processLoginForm(){
 }
 
 
-?>
-
-<!--//getUserByUserLogin-->
-<!--//$user_id = 'SELECT * FROM users WHERE user_login = :user_login';-->
-<!--//return $user;-->
-<!---->
-<!--//    $user_login = $_SESSION['user_login'];-->
-<!--//    $user_password = $_SESSION['user_password'];-->
+function processUploadForm(){
+$stop = true;
+}
+processUploadForm();

@@ -1,7 +1,6 @@
 <?php
 require __DIR__ . '/../includes/bootstrap.php';
-?>
-<!DOCTYPE html>
+?><!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
