@@ -12,6 +12,8 @@ $registration_errors = processRegistrationForm();
 
 $login_errors = processLoginForm();
 
+$upload_errors = processUploadForm();
+
 
 //// ===========var_dump===============
 //var_dump(getCurrentUserId());

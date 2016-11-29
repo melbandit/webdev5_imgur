@@ -28,6 +28,6 @@
         </ul>
     </div>
     <ul>
-        <li><a href="#" class="nav-item-logout">Logout</a></li>
+<!--        <li><button class="nav-item-logout" value="--><?php //echo logOut()?><!--">Logout</button></li>-->
     </ul>
 </div>

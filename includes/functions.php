@@ -34,6 +34,30 @@ function getImages($count=12, $offset=0){
     $query->setFetchMode( PDO::FETCH_OBJ );
     return $query->fetchAll();
 }
+function getTotalImageCount(){
+    global $db;
+    $query = $db->prepare( 'SELECT COUNT(*) FROM images');
+    $query->execute();
+    return (integer) $query->fetch()[0];
+}
+function getTotalPageCount($per_page = 12){
+//    $total = getTotalImageCount();
+//    return round($total / $per_page);
+    return (integer) ceil (getTotalImageCount() / $per_page);
+}
+function getImagesFromUserId($id){
+    global $db;
+    $query = $db->prepare( 'SELECT * FROM images WHERE author = :author' );
+    $query->bindValue( ':author', $id, PDO::PARAM_INT );
+    $query->execute();
+    $query->setFetchMode( PDO::FETCH_OBJ );
+    return $query->fetchAll();
+}
+
+function getCurrentOffset(){
+    $page_number = max( (integer) filter_input(INPUT_GET, 'page'), 1);
+    return ($page_number -1) * 12;
+}
 
 /**
  * This is a function for creating a new image in the db.
@@ -143,7 +167,6 @@ function updateComment($id, $comment){
  * @param $id This the ID of the comment in the db.
  */
 function deleteComment($id){
-    //DELETE
     global $db;
     $query = $db->prepare( 'DELETE FROM comments WHERE id = :id' );
     $query->bindValue( ':id', $id, PDO::PARAM_INT );
@@ -406,9 +429,64 @@ function processLoginForm(){
 
     return $loginErrors;
 }
+//====End of Login/logout
 
 
-function processUploadForm(){
-$stop = true;
+//====== Upload form ========
+
+function processUploadForm()
+{
+
+    $uploadErrors = array();
+//    if ( ! isset( $_POST['upload-form'] ) ) {
+//        return $uploadError;
+//    }
+    // die("test");
+    //var_dump($uploadErrors);
+
+    if (!isset($_FILES['image'])) {
+        return $uploadErrors;
+    }
+
+    //Check if title is empty
+    $title = filter_input(INPUT_POST, 'title');
+    if (empty($title)) {
+        $uploadErrors['title'] = "no title!!";
+    }
+
+    //no file provided
+    if (4 === $_FILES['image']['error']) {
+        $uploadErrors['image'] = "no files";
+    } else if ('image' !== explode('/', $_FILES['image']['type'])[0]) {
+        //Invalid file type
+        $uploadErrors['image'] = "Invalid Type";
+    } else if ($_FILES['image']['error'] !== 0) {
+        $uploadErrors['image'] = "Upload Failed";
+    } else {
+        //let's save it
+        $filepath = __DIR__ . '/../uploads/' . $_FILES['image']['name'];
+        $upload_success = move_uploaded_file($_FILES['image']['tmp_name'], $filepath);
+    }
+    if ($upload_success == false) {
+        $uploadErrors['image'] = "Upload not filed";
+    }
+
+    if (empty($uploadErrors)) {
+        $uploadErrors['image'] = "it worked";
+        $image = (object)[ //or array(insert info here)
+            'author' => getCurrentUserId(),
+            'url' => APP_URL . '/uploads/' . basename($filepath),
+            'title' => filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING),
+            'description' => filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING)
+        ];
+        //Success! Upload image data into the database. (use insertImage() function)
+        insertImage($image);
+        //Redirect user to the image management screen
+        header('Location: ' . APP_URL . '/userImages.php');
+    }
+
+    return $uploadErrors;
 }
-processUploadForm();
+//logOut();
+//var_dump(getUser(getCurrentUserId())->user_login);
+//die();
