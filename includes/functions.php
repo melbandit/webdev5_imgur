@@ -423,8 +423,12 @@ function getCurrentUserId(){
  * @return array
  */
 function processLoginForm(){
-
     $loginErrors = array();
+
+//    if( !empty($_POST)){
+//        var_dump($_POST);
+//        die();
+//    }
 
     if ( ! isset( $_POST['login-form'] ) ) {
         return $loginErrors;
@@ -516,6 +520,3 @@ function processUploadForm()
 
     return $uploadErrors;
 }
-//logOut();
-//var_dump(getUser(getCurrentUserId())->user_login);
-//die();

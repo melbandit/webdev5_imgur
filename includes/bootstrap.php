@@ -26,8 +26,8 @@ $upload_errors = processUploadForm();
 //?text=value
 //var_dump(melbandit\Url::getCurrentUrl());
 
-var_dump(getCurrentUserId());
-die();
+//var_dump(getCurrentUserId());
+//die();
 
 //var_dump(getCurrentUserId());
 //die();

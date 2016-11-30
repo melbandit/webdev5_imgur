@@ -4,7 +4,7 @@
             Login <span class="caret"></span>
         </button>
         <ul class="dropdown-menu">
-            <form method="post" action="<?php echo APP_URL;?>">
+            <form method="post" action="<?php echo APP_URL?>">
                 <?php if ( $login_errors ) { ?>
                     <p style="color:red;">
                         <?php foreach ( $login_errors as $loginError ) {
