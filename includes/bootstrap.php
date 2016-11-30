@@ -1,8 +1,15 @@
 <?php
 session_start();
 
+//include __DIR__ . '/../vendor/autoload.php';
+
 include __DIR__ . '/config.php';
 include __DIR__ . '/functions.php';
+
+
+if (isset ($_GET['logout'])){
+    logOut();
+}
 
 date_default_timezone_set( 'America/New_York' );
 
@@ -16,6 +23,12 @@ $upload_errors = processUploadForm();
 
 
 //// ===========var_dump===============
+//?text=value
+//var_dump(melbandit\Url::getCurrentUrl());
+
+var_dump(getCurrentUserId());
+die();
+
 //var_dump(getCurrentUserId());
 //die();
 //var_dump(getComments(2));

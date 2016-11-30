@@ -4,7 +4,7 @@
             Login <span class="caret"></span>
         </button>
         <ul class="dropdown-menu">
-            <form method="post">
+            <form method="post" action="<?php echo APP_URL;?>">
                 <?php if ( $login_errors ) { ?>
                     <p style="color:red;">
                         <?php foreach ( $login_errors as $loginError ) {
@@ -27,7 +27,4 @@
             </form>
         </ul>
     </div>
-    <ul>
-<!--        <li><button class="nav-item-logout" value="--><?php //echo logOut()?><!--">Logout</button></li>-->
-    </ul>
 </div>

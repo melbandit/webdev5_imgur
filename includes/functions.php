@@ -202,6 +202,12 @@ function getUser($id){
     $query->execute();
     return $query->fetchObject();
 }
+
+/**
+ * @param $user_login
+ * @return mixed
+ */
+
 function getUserByUserLogin($user_login){
 //getUser($image->user_id)->author;
     global $db;
@@ -270,6 +276,10 @@ function userExists( $username ){
     return (bool) $user;
 }
 
+/**
+ * @param $password
+ * @return bool
+ */
 function pwdExists( $password ){
     global $db;
     $query = $db->prepare( 'SELECT user_password FROM users WHERE user_password = :user_password' );
@@ -298,12 +308,19 @@ function emailExists( $email ){
     return (bool) $email;
 }
 
+/**
+ * @param $timestamp
+ */
+
 function displayDate( $timestamp ){
     $imageDate = new DateTime();
     $imageDate->setTimestamp($timestamp);
     echo $imageDate->format('F d,Y \a\t h:ia');
 }
 
+/**
+ * @return array
+ */
 function processRegistrationForm(){
 
     $errors = array();
@@ -370,17 +387,24 @@ function processRegistrationForm(){
 }
 
 //=========== Log In/Out ===========
-
+/**
+ * @param $id
+ */
 function logIn($id){
     $_SESSION['id'] = $id;
 }
 
+/**
+ *
+ */
 function logOut(){
     session_unset();
     session_destroy();
 }
 
-
+/**
+ * @return int
+ */
 function getCurrentUserId(){
     $user_id = 0;
 
@@ -395,6 +419,9 @@ function getCurrentUserId(){
     return $user_id;
 }
 
+/**
+ * @return array
+ */
 function processLoginForm(){
 
     $loginErrors = array();
@@ -433,7 +460,9 @@ function processLoginForm(){
 
 
 //====== Upload form ========
-
+/**
+ * @return array
+ */
 function processUploadForm()
 {
 

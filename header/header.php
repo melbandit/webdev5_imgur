@@ -39,7 +39,13 @@ require __DIR__ . '/../includes/bootstrap.php';
         <!--            <li><a href="http://www.adultswim.com/games/" class="nav-item" >Games</a></li>-->
         <!--            <li><a href="shows.html" class="nav-item">Shows</a></li>-->
         <!--        </ul>-->
+
+        <?php
+        if (0 === getCurrentUserId()) {} else {?>
         <button class="btn upload"><a href="upload.php"><span class="glyphicon glyphicon-upload"></span> UPLOAD</a></button>
+        <ul>
+            <li><a class="nav-item-logout" href="<?php echo APP_URL?>/?logout=true">Logout</a></li>
+        </ul> <?php } ?>
 
         <form class="navbar-form navbar-left" role="search">
             <div class="form-group">
@@ -51,8 +57,10 @@ require __DIR__ . '/../includes/bootstrap.php';
 
 
        <?php
-       include __DIR__ . '/login.php';
-       include __DIR__ . '/registration.php';
+        if (0 === getCurrentUserId()) {
+            include __DIR__ . '/login.php';
+            include __DIR__ . '/registration.php';
+        }
        ?>
 
     </nav><!-- END of .nav -->
