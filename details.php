@@ -3,7 +3,7 @@
 <div class="content">
     <?php
     include __DIR__ . '/templates/image-view.php';
-    include __DIR__ . '/templates/pagination.php';
+//    include __DIR__ . '/templates/pagination.php';
     include __DIR__ . '/templates/comment-form.php';
     include __DIR__ . '/templates/comment-container.php';
     ?>

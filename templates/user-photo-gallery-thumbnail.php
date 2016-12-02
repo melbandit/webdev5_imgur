@@ -5,9 +5,8 @@
         <p class="thumbnail--date-time"><?php include __DIR__ . '/../includes/format-date.php'; ?></p>
         <p class="thumbnail--description"> "<?php echo $image->description; ?>"</p>
         <form method="post">
-            <input class="cross" type="submit" value="delete"<?php deleteImage($image->id); ?>>&#735; Delete</input>
-
-<!--            <button class="cross" type="submit" value="delete">&#735; Delete</button>-->
+            <input class="cross" type="submit" name="deleteImage" value="&#735;Delete"/>
+            <input class="cross" type="hidden" name="img" value="<?php echo $image->id; ?>"/>
         </form>
 
 

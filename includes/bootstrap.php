@@ -21,6 +21,10 @@ $login_errors = processLoginForm();
 
 $upload_errors = processUploadForm();
 
+processDeleteForm();
+
+processCommentForm();
+
 
 //// ===========var_dump===============
 //?text=value
