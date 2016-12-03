@@ -1,0 +1,13 @@
+{
+    "name": "melissasattler/webdev5_imgur",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Melissa Sattler",
+            "email": "melissa.i.sattler@gmail.com"
+        }
+    ],
+    "require": {
+        "league/glide": "^1.2"
+    }
+}

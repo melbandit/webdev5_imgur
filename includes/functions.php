@@ -66,11 +66,12 @@ function getCurrentOffset(){
  */
 function insertImage($image){
     global $db;
-    $query = $db->prepare( 'INSERT INTO images (author, url, title, description) VALUE (:id, :url, :title, :description)' );
+    $query = $db->prepare( 'INSERT INTO images (author, url, title, description, alt) VALUE (:id, :url, :title, :description, :alt)' );
     $query->bindValue( ':id', $image->author, PDO::PARAM_INT ); // how do we get the user id?
     $query->bindValue( ':url', $image->url, PDO::PARAM_STR );
     $query->bindValue( ':title', $image->title, PDO::PARAM_STR );
     $query->bindValue( ':description', $image->description, PDO::PARAM_STR );
+    $query->bindValue( ':alt', $image->title, PDO::PARAM_STR );
     $query->execute();
 }
 /**
@@ -483,8 +484,6 @@ function processUploadForm()
 
     //Check if title is empty
     $title = filter_input(INPUT_POST, 'title');
-    $filepath = __DIR__ . '/../uploads/' . $_FILES['image']['name'];
-    $upload_success = move_uploaded_file($_FILES['image']['tmp_name'], $filepath);
 
 
     if (empty($title)) {
@@ -501,9 +500,11 @@ function processUploadForm()
         $uploadErrors['image'] = "Upload Failed";
     } else {
         //let's save it
+        $filepath = __DIR__ . '/../uploads/' . $_FILES['image']['name'];
+        $upload_success = move_uploaded_file($_FILES['image']['tmp_name'], $filepath);
     }
 
-    if ($upload_success == false) {
+    if (isset($upload_success) && $upload_success === false) {
         $uploadErrors['image'] = "Upload not filed";
     }
 

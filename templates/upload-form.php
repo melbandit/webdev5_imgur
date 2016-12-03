@@ -10,7 +10,7 @@
 
     title: <input type="text" name="title" value="<?php echo filter_input( INPUT_POST, 'title', FILTER_SANITIZE_STRING);?>"><br>
 
-    description: <textarea rows="4" cols="20" name="description"<?php echo filter_input( INPUT_POST, 'description', FILTER_SANITIZE_SPECIAL_CHARS);?>></textarea>
+    description: <textarea rows="4" cols="20" name="description"><?php echo filter_input( INPUT_POST, 'description', FILTER_SANITIZE_SPECIAL_CHARS);?></textarea>
 
     <button type="submit" class="btn btn-default">Submit</button>
 </form>

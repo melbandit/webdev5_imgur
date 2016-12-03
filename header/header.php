@@ -50,8 +50,8 @@ require __DIR__ . '/../includes/bootstrap.php';
         <form class="navbar-form navbar-left" role="search">
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="Search">
+                <button type="submit" class="btn btn-md"><span class="glyphicon glyphicon-search"></span></button>
             </div>
-            <button type="submit" class="btn btn-md"><span class="glyphicon glyphicon-search"></span></button>
         </form>
 
 

@@ -1,10 +1,10 @@
 <footer class="footer">Copyright &copy; <?php echo date('Y'); ?></footer>
 
 <?php
-var_dump(getCurrentUserId());
-var_dump($login_errors);
-//die();
-?>
+//var_dump(getCurrentUserId());
+//var_dump($login_errors);
+////die();
+//?>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

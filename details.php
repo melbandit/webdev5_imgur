@@ -1,6 +1,6 @@
 <?php include __DIR__ . '/header/header.php'; ?>
 
-<div class="content">
+<div class="content image-view__wrapper">
     <?php
     include __DIR__ . '/templates/image-view.php';
 //    include __DIR__ . '/templates/pagination.php';
