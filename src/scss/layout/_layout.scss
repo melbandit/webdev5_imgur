@@ -1,5 +1,8 @@
 body{
-  margin-top: 100px;
+  margin-top: 200px;
+  @include bp-xs{
+    margin-top: 125px;
+  }
 }
 .image-view__wrapper{
   background-color: lightseagreen;
@@ -7,6 +10,39 @@ body{
   margin-left:auto;
   margin-right:auto;
   max-width: 650px;
+  border-radius: 25px;
+  .post__img{
+    padding-top:25px;
+  }
+  .post__description{
+    padding-left: 25px;
+    padding-top: 5px;
+    font-weight: 500;
+    line-height: 1.2em;
+  }
+  .post__title{
+    padding-top:10px;
+    padding-left: 25px;
+    font-size: 1.1em;
+    transition: all 1.5s ease;
+  }
+  .post__date-time{
+    padding-left: 25px;
+    //padding-top: 5px;
+    font-weight: 100;
+    line-height: 1em;
+  }
+  .post__username{
+    padding-left: 25px;
+    font-weight: 700;
+    font-size: 15px;
+    transition: all 1.5s ease;
+    color: #252830;
+  }
+  .input-group{
+    width: 100%;
+    padding: 0 25px;
+  }
 }
 .photo-gallery {
   width: 100%;
@@ -48,7 +84,8 @@ body{
   }
 }
 .image-view{
-  max-height: 800px;
+  max-width: 600px;
+  width:100%;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -74,6 +111,39 @@ body{
 .btn-group{
   float: left;
   .dropdown-menu{
-    background-color: black;
+      background-color: black;
+      left: -124%;
+    label{
+      padding: 5px 20px;
+    }
+  }
+}
+.btn.btn-default{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.after-login_container{
+  width: 320px;
+  margin: 0 auto;
+}
+.after-login{
+  display: block;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: black;
+  border-radius: 28px;
+  box-shadow: 2px 1px lightseagreen;
+  form{
+    padding:40px;
+  }
+  textarea{
+    width:100%;
+    margin-bottom:10px;
+  }
+  input{
+    width:100%;
+    margin-bottom:10px;
   }
 }

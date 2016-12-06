@@ -34,17 +34,49 @@ function getImages($count=12, $offset=0){
     $query->setFetchMode( PDO::FETCH_OBJ );
     return $query->fetchAll();
 }
+
+/**
+ * This image takes in an int to set how many images will be shown per page for pagination.
+ *
+ * @param int $per_page The int amount to be set for how many images you want per page
+ *
+ * @return int Will return the amount of images used per page
+ */
+function getTotalPageCount($per_page = 12){
+//    $total = getTotalImageCount();
+//    return round($total / $per_page);
+    return (integer) ceil (getTotalImageCount() / $per_page);
+}
+
+/**
+ * This function will find out the amount of images there are in the database.
+ *
+ * @return int Will return an int amount equal to the image count from the database.
+ */
 function getTotalImageCount(){
     global $db;
     $query = $db->prepare( 'SELECT COUNT(*) FROM images');
     $query->execute();
     return (integer) $query->fetch()[0];
 }
-function getTotalPageCount($per_page = 12){
-//    $total = getTotalImageCount();
-//    return round($total / $per_page);
-    return (integer) ceil (getTotalImageCount() / $per_page);
+
+/**
+ * This function gets the current image offset based on the amount of pages.
+ *
+ * @return int $page_number Will return which images to start showing for each page
+ */
+function getCurrentOffset(){
+    $page_number = max( (integer) filter_input(INPUT_GET, 'page'), 1);
+    return ($page_number -1) * 12;
 }
+
+/**
+ * This function takes in a user id and goes to the db to fetch the author's images.
+ *
+ * @param $id The id to be passed so the database can find the author and then return the authors images
+ *
+ * @return array Will return the images of the user using and param id
+ */
 function getImagesFromUserId($id){
     global $db;
     $query = $db->prepare( 'SELECT * FROM images WHERE author = :author' );
@@ -52,11 +84,6 @@ function getImagesFromUserId($id){
     $query->execute();
     $query->setFetchMode( PDO::FETCH_OBJ );
     return $query->fetchAll();
-}
-
-function getCurrentOffset(){
-    $page_number = max( (integer) filter_input(INPUT_GET, 'page'), 1);
-    return ($page_number -1) * 12;
 }
 
 /**
@@ -196,7 +223,6 @@ function getUsers(){
  * @return object|false Will return a user object from the database or false if an invalid id is provided.
  */
 function getUser($id){
-//getUser($image->user_id)->author;
     global $db;
     $query = $db->prepare( 'SELECT * FROM users WHERE id = :id' );
     $query->bindValue( ':id', $id, PDO::PARAM_INT );
@@ -205,12 +231,14 @@ function getUser($id){
 }
 
 /**
- * @param $user_login
- * @return mixed
+ * This function get the user's id when the user logs-in user login.
+ *
+ * @param $user_login This is the user_login param entered into the login form
+ *
+ * @return mixed Will return the user's id information
  */
 
 function getUserByUserLogin($user_login){
-//getUser($image->user_id)->author;
     global $db;
     $query = $db->prepare( 'SELECT * FROM users WHERE user_login = :user_login' );
     $query->bindValue( ':user_login', $user_login, PDO::PARAM_STR );
@@ -262,9 +290,11 @@ function deleteUser($id){
 }
 
 /**
- * @param $username
+ * This function checks if the user exists in the db while registering.
  *
- * @return bool
+ * @param $username This is the username the user enters when registering
+ *
+ * @return bool Will return true or false whether the username already exists
  */
 
 function userExists( $username ){
@@ -278,8 +308,11 @@ function userExists( $username ){
 }
 
 /**
- * @param $password
- * @return bool
+ * This function checks id the user password already exists in the db.
+ *
+ * @param $password This is the password the user enters when registering
+ *
+ * @return bool Will return true or false whether the password already exists
  */
 function pwdExists( $password ){
     global $db;
@@ -295,9 +328,18 @@ function pwdExists( $password ){
 // ================= END of USERS =================
 
 /**
- * @param $email
+ * This function checks id the user password already exists in the db.
  *
- * @return bool
+ * @param $password This is the password the user enters when registering
+ *
+ * @return bool Will return true or false whether the password already exists
+ */
+/**
+ * This function checks if the email already exists in the db.
+ *
+ * @param $email This is the email param entered
+ *
+ * @return bool Will return true or false if the email exists
  */
 function emailExists( $email ){
     global $db;
@@ -310,7 +352,11 @@ function emailExists( $email ){
 }
 
 /**
- * @param $timestamp
+ * This function displays a timestamp in certain date format and return that info.
+ *
+ * @param $timestamp Will take in the timestamp given to change
+ *
+ * return string This will return the timestamp as a date format given.
  */
 
 function displayDate( $timestamp ){
@@ -320,7 +366,12 @@ function displayDate( $timestamp ){
 }
 
 /**
- * @return array
+ * This function processes all the registration information typed in by the new user.
+ * This function checks if the username exists, username is too short, username entered.
+ * This function checks if there is an email entered, valid email, and if email exists.
+ * This function also check is there is a password entered, password too short, and if the passwords match.
+ *
+ * @return array Will return the errors or the username, email and password and add them to the db.
  */
 function processRegistrationForm(){
 
@@ -379,9 +430,7 @@ function processRegistrationForm(){
 
     //redirect user to login
         header( 'Location: ' . APP_URL . '/after-login.php');
-        //'Location: http://localhost:3002/webdev5_imgur/index.php'
     }
-    //var_dump($username, $email, $password, $passwordVerify);
 
     return $errors;
 
@@ -389,14 +438,16 @@ function processRegistrationForm(){
 
 //=========== Log In/Out ===========
 /**
- * @param $id
+ * This function logs in the user and creates a session for that user.
+ *
+ * @param $id Will take in the id of the user for database access.
  */
 function logIn($id){
     $_SESSION['id'] = $id;
 }
 
 /**
- *
+ * This functions logs out the user and destroys the session.
  */
 function logOut(){
     session_unset();
@@ -404,7 +455,9 @@ function logOut(){
 }
 
 /**
- * @return int
+ * This function fetches the logged in user's id from session.
+ *
+ * @return int Will return the user_id created form the session.
  */
 function getCurrentUserId(){
     $user_id = 0;
@@ -421,7 +474,11 @@ function getCurrentUserId(){
 }
 
 /**
- * @return array
+ * This function process log in information to log in users.
+ * This function checks if there is a username entered or if the username exists in the db.
+ * This function checks if there is a password entered and if that password matches the username's password in the db.
+ *
+ * @return array Will return errors or login the user using their id.
  */
 function processLoginForm(){
     $loginErrors = array();
@@ -461,12 +518,19 @@ function processLoginForm(){
 
     return $loginErrors;
 }
-//====End of Login/logout
+//====End of Login/logout ======
 
 
 //====== Upload form ========
 /**
- * @return array
+ * This function add an image, text and description to the db with the user_id.
+ * This function checks of there is a title entered,
+ * if there is if there is an image being uploaded, a valid image uploaded and if the upload failed.
+ * Once there is success the image is added to the db using the user id and then
+ * added to the user-images page.
+ * The image uploaded get added to the uploads folder, not contained in the db.
+ *
+ * @return array Will return any errors and the image to be added to the db.
  */
 function processUploadForm()
 {
@@ -525,24 +589,32 @@ function processUploadForm()
     return $uploadErrors;
 }
 
+/**
+ * This function deletes an image and it's information from the db.
+ */
 function processDeleteForm(){
-
     if ( isset( $_POST['img'] ) ) {
         deleteImage($_POST['img']);
     }
-
 }
 
+/**
+ * This function post a comment to the db and to the site.
+ *
+ * return Will add who posted the image with author, text(comment), and image_id to the db.
+ */
 function processCommentForm(){
+    //event.preventDefault();
 
     if ( isset( $_POST['comment-form'] ) ) {
+        insertComment((object)$_POST);
+    //other way of doing it
 //        $comment = (object)[
 //            "text" => $_POST['text'],
 //            "image_id" => $_POST['image_id'],
 //            "author" => $_POST['author']
 //        ];
         //insertComment($comment);
-        insertComment((object)$_POST);
 //        var_dump($comment, (object)$_POST);
 //        die();
     }

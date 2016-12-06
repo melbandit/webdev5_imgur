@@ -18,43 +18,27 @@ require __DIR__ . '/../includes/bootstrap.php';
 <header class="header">
     <div class="header__logo">
         <a href="index.php">
-            <img class="header__logo--sm" src="assets/img/#">
-            <img class="header__logo--lg" src="assets/img/#">
+            <img class="header__logo--sm" src="assets/img/logo.png">
         </a>
-        <!--        <div class="cross-bkg"></div>-->
-        <!--        <button class="cross">&#735;</button>-->
     </div>
 
     <nav class="header navigation">
-        <!--        <ul class="menu-hamburger">-->
-        <!--            <li><a href="#menu" class="nav-item" id="menu">Menu</li>-->
-        <!--            <li><a href="shows.html" class="nav-item closed">Shows</a></li>-->
-        <!--            <li><a href="http://www.adultswim.com/games/" class="nav-item closed" >Games</a></li>-->
-        <!--            <li><a href="http://www.adultswim.com/music/" class="nav-item closed">Music</a></li>-->
-        <!--            <li><a href="login.php" class="nav-item-login closed">Login</a></li>-->
-        <!--        </ul>-->
-
-        <!--        <ul class="menu-md">-->
-        <!--            <li><a href="http://www.adultswim.com/music/" class="nav-item">Music</a></li>-->
-        <!--            <li><a href="http://www.adultswim.com/games/" class="nav-item" >Games</a></li>-->
-        <!--            <li><a href="shows.html" class="nav-item">Shows</a></li>-->
-        <!--        </ul>-->
-
         <?php
         if (0 === getCurrentUserId()) {} else {?>
-        <button class="btn upload"><a href="upload.php"><span class="glyphicon glyphicon-upload"></span> UPLOAD</a></button>
-        <ul>
-            <li><a class="nav-item-logout" href="<?php echo APP_URL?>/?logout=true">Logout</a></li>
-        </ul> <?php } ?>
+            <button class="btn upload"><a href="upload.php"><span class="glyphicon glyphicon-upload"></span> UPLOAD</a></button>
+            <a class="userImages" href="userImages.php">my uploads</a>
 
-        <form class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search">
-                <button type="submit" class="btn btn-md"><span class="glyphicon glyphicon-search"></span></button>
-            </div>
-        </form>
+            <ul>
+                <li><a class="nav-item-logout" href="<?php echo APP_URL?>/?logout=true">Logout</a></li>
+            </ul>
+        <?php } ?>
 
-
+<!--        <form class="navbar-form navbar-left" role="search">-->
+<!--            <div class="form-group">-->
+<!--                <input type="text" class="form-control" placeholder="Search">-->
+<!--                <button type="submit" class="btn btn-md"><span class="glyphicon glyphicon-search"></span></button>-->
+<!--            </div>-->
+<!--        </form>-->
 
        <?php
         if (0 === getCurrentUserId()) {

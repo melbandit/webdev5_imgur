@@ -1,3 +1,36 @@
 .userImages {
+  float: left;
+  margin-top: 22px;
+  padding-left: 10px;
   color: lightseagreen;
+  &:hover{
+    color: #4c4c4c;
+  }
+}
+
+.upload-form{
+  display: block;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: black;
+  border-radius: 28px;
+  box-shadow: 2px 1px lightseagreen;
+  @include bp-xs{
+    width: 80%;
+  }
+  form{
+    padding:20px;
+    @include bp-xs{
+      padding:40px;
+    }
+  }
+  textarea{
+    width:100%;
+    margin-bottom:10px;
+  }
+  input{
+    width:100%;
+    margin-bottom:10px;
+  }
 }

@@ -28,6 +28,13 @@ body{
   transition: opacity 1.5s ease;
   transition-duration: 1s;
 }
+.pagination{
+  margin-left: 40px;
+}
+.pagination > li > a{
+  color: lightseagreen;
+  background-color: none;
+}
 .pagination > li:first-child > a{
   border-bottom-left-radius: 18px;
   border-top-left-radius: 18px;

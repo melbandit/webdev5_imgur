@@ -17,20 +17,36 @@ header{
   float: left;
 }
 .upload{
+  //clear: both;
   float: left;
   background-color: black;
   color: whitesmoke;
   border-radius: 25px;
-  font-size: 1.2em;
+  font-size: 1em;
+  margin: 0 25px;
+  margin-top: 6px;
+  padding: 10px 10px 5px 10px;
   &:hover{
     background-color: lightseagreen;
   }
+  //@include bp-xs{
+  //  float: left;
+  //}
 }
 
-
+.header__logo--sm{
+  width: 100px;
+  padding-left: 20px;
+  margin-top: 10px;
+}
+.login_logout, .registration.btn-group{
+  float: right;
+  margin-top: 18px;
+ margin-right: 50px;
+}
 .nav-item-login,
 .nav-item-logout{
-  float: left;
+  float: right;
   color: white;
 }
 .btn--register{
@@ -39,5 +55,13 @@ header{
   border-radius: 20px;
   &:hover{
     background-color: #5e5e5e;
+  }
+}
+
+.nav-item-logout{
+  margin-top: 12px;
+  padding: 10px 20px;
+  &:hover{
+    color: lightseagreen;
   }
 }

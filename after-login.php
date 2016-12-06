@@ -9,7 +9,7 @@
     }
 </style>
 
-<div class="login_logout">
+<div class="after-login_container">
     <div class="btn-group">
         <?php if ( $login_errors ) { ?>
             <p style="color:red;">
@@ -18,19 +18,19 @@
                 } ?>
             </p>
         <?php } ?>
-        <ul class="">
+        <ul class="after-login">
             <form method="post">
-                Username: <input type="text" name="username"
+                username <input type="text" name="username"
                                  style="<?php echo ! empty( $login_errors['username'] ) ? 'color:red' : 'color:black' ?>"
                                  value="<?php echo filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING) ?>"><br>
                 <!--                type="email"-->
-                Password: <input type="text" name="pwd"
+                password <input type="text" name="pwd"
                                  style="<?php echo ! empty( $login_errors['password'] ) ? 'color:red' : 'color:black' ?>"
                                  value="<?php echo filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING) ?>"
                                  ><br>
-                <button type="button" class="btn btn--register">
-                    forgot?
-                </button>
+<!--                <button type="button" class="btn btn--register">-->
+<!--                    forgot?-->
+<!--                </button>-->
                 <input type="submit" name="login-form" class="btn btn-default">
             </form>
         </ul>

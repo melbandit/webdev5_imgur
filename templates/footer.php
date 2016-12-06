@@ -1,4 +1,4 @@
-<footer class="footer">Copyright &copy; <?php echo date('Y'); ?></footer>
+<footer class="footer">Copyright &copy; <?php echo date('Y') ?> - <?php echo date('Y') + 1 ?></footer>
 
 <?php
 //var_dump(getCurrentUserId());
