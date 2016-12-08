@@ -1,4 +1,6 @@
 <?php $image = getImage( $_GET['image']); ?>
+<a href="?image=<?php echo getPrevImage($image->id); ?>">Prev</a>
+<a href="?image=<?php echo getNextImage($image->id); ?>">Next</a>
 
 <div class="post__img">
     <img class="image-view" src="<?php echo $image->url; ?>" alt="<?php echo $image->alt ?>"/>
@@ -7,3 +9,4 @@
 <div class="post__username">by <?php echo getUser($image->author)->user_login; ?></div>
 <div class="post__description">"<?php echo $image->description; ?>"</div>
 <div class="post__date-time"><?php include __DIR__ . '/../includes/format-date.php'; ?></div>
+

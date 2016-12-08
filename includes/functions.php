@@ -17,6 +17,7 @@ function getImage( $id ){
     return $query->fetchObject();
 }
 
+
 /**
  * This function will fetch all images object from the db.
  *
@@ -96,8 +97,8 @@ function insertImage($image){
     $query = $db->prepare( 'INSERT INTO images (author, url, title, description, alt) VALUE (:id, :url, :title, :description, :alt)' );
     $query->bindValue( ':id', $image->author, PDO::PARAM_INT ); // how do we get the user id?
     $query->bindValue( ':url', $image->url, PDO::PARAM_STR );
-    $query->bindValue( ':title', $image->title, PDO::PARAM_STR );
-    $query->bindValue( ':description', $image->description, PDO::PARAM_STR );
+    $query->bindValue( ':title', filter_var($image->title, FILTER_SANITIZE_SPECIAL_CHARS), PDO::PARAM_STR );
+    $query->bindValue( ':description', filter_var($image->description, FILTER_SANITIZE_SPECIAL_CHARS), PDO::PARAM_STR );
     $query->bindValue( ':alt', $image->title, PDO::PARAM_STR );
     $query->execute();
 }
@@ -127,6 +128,56 @@ function deleteImage($id){
     $query = $db->prepare( 'DELETE FROM images WHERE id = :id' );
     $query->bindValue( ':id', $id, PDO::PARAM_INT );
     $query->execute();
+}
+
+
+function getFirstImageId(){
+    global $db;
+    $query = $db->prepare('SELECT id FROM images LIMIT 1');
+    $query->execute();
+    return $query->fetchColumn();
+}
+
+function getLastImageId(){
+    global $db;
+    $query = $db->prepare('SELECT id FROM images ORDER BY id DESC LIMIT 1');
+    $query->execute();
+    return $query->fetchColumn();
+}
+
+function getNextImage($id){
+    $next_id = $id;
+    $last_id = getLastImageId();
+    $image = false;
+
+    if($id == $last_id){
+        return getFirstImageId();
+    }
+    while($image === false  && $next_id < $last_id){
+        $next_id ++;
+        $image  = getImage($next_id);
+    }
+
+    return $next_id;
+}
+
+
+function getPrevImage($id){
+    $prev_id = $id;
+    $first_id = getFirstImageId();
+    $image = false;
+
+    if($id == $first_id){
+        return getLastImageId();
+    }
+
+    while($image === false  && $prev_id > $first_id){
+
+        $prev_id --;
+        $image  = getImage($prev_id);
+    }
+
+    return $prev_id;
 }
 // ================= END of IMAGES =================
 
@@ -170,7 +221,7 @@ function insertComment($comment){
     global $db;
     $query = $db->prepare( 'INSERT INTO comments (author, text, image_id) VALUE (:author, :text, :image_id)' );
     $query->bindValue( ':author', $comment->author, PDO::PARAM_INT );
-    $query->bindValue( ':text', $comment->text, PDO::PARAM_STR );
+    $query->bindValue( ':text', filter_var($comment->text, FILTER_SANITIZE_SPECIAL_CHARS), PDO::PARAM_STR );
     $query->bindValue( ':image_id', $comment->image_id, PDO::PARAM_INT );
     $query->execute();
 }
@@ -389,33 +440,33 @@ function processRegistrationForm(){
     $username = filter_input(INPUT_POST, 'username');
     if(empty($username)){
         $errors['username'] = "no username!!";
-    }
-    if(strlen($username) < 5){
+    }else if(strlen($username) < 5){
         $errors['username'] = "username too short/weak";
-    }
-    if(userExists($username)){
+    }else if(userExists($username)){
         $errors['username'] = "username exists!";
     }
 
     // invalid email
-    $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+    $email = filter_input(INPUT_POST, 'email');
     if( empty($email) ){
+        $errors['email'] = "missing email";
+    } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
         $errors['email'] = "invalid email";
-    }
-    //email already exists
-    if( emailExists($email) ){
+    } else if( emailExists($email) ){
+        //email already exists
         $errors['email'] = "email exists!";
     }
 
     $password = filter_input(INPUT_POST, 'pwd');
     $passwordVerify = filter_input(INPUT_POST, 'pwd-verify');
     //password don't match
-    if($password !== $passwordVerify){
+    if(empty($password)){
+        $errors['pwd'] = "no password!!";
+    } else if($password !== $passwordVerify){
         $errors['pwd'] = "your passwords don't match";
-    }
-    //password too weak
-    if(strlen($password) < 8){
+    } else if(strlen($password) < 8){
         $errors['pwd'] = "pwd too short/weak";
+        //password too weak
     }
     //create user
     if(empty($errors)){
@@ -593,8 +644,20 @@ function processUploadForm()
  * This function deletes an image and it's information from the db.
  */
 function processDeleteForm(){
+
     if ( isset( $_POST['img'] ) ) {
-        deleteImage($_POST['img']);
+        $image_id = $_POST['img'];
+        $image = getImage($image_id);
+        if (false !== $image){
+
+            $filepath = __DIR__ . '/../uploads/' . basename($image->url);
+            unlink($filepath);
+
+            foreach (getComments($_POST['img'])as $comment){
+                deleteComment($comment->id);
+            }
+            deleteImage($_POST['img']);
+        }
     }
 }
 
@@ -607,7 +670,7 @@ function processCommentForm(){
     //event.preventDefault();
 
     if ( isset( $_POST['comment-form'] ) ) {
-        insertComment((object)$_POST);
+        insertComment((object)$_POST, FILTER_SANITIZE_SPECIAL_CHARS);
     //other way of doing it
 //        $comment = (object)[
 //            "text" => $_POST['text'],

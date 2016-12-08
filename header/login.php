@@ -16,7 +16,7 @@
                                  style="<?php echo ! empty( $login_errors['username'] ) ? 'color:red' : 'color:black' ?>"
                                  value="<?php echo filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING) ?>"><br>
 <!--                type="email"-->
-                Password: <input type="text" name="pwd"
+                Password: <input type="password" name="pwd"
                                  style="<?php echo ! empty( $login_errors['pwd'] ) ? 'color:red' : 'color:black' ?>"
                                  value="<?php echo filter_input(INPUT_POST, 'pwd', FILTER_SANITIZE_STRING) ?>"
                                  ><br>
